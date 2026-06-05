@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Actor&display=swap");
+@import "tailwindcss";
+
+:root {
+    --color-dark: #5c524c;
+    --color-white: #ffffff;
+    --color-green: #4c7160;
+    --color-brown: #b66a3c;
+    --color-cream: #fbf1ce;
+
+    --color-green-light: rgba(76, 113, 96, 0.12);
+    --color-brown-light: rgba(182, 106, 60, 0.12);
+    --color-border: rgba(92, 82, 76, 0.18);
+
+    font-family: "Actor", system-ui, sans-serif;
+    color: var(--color-dark);
+    background-color: var(--color-white);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--color-white);
+    font-family: "Actor", system-ui, sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container-custom {
+    width: min(1120px, calc(100% - 2rem));
+    margin-inline: auto;
+}
+
+.section-padding {
+    padding-block: 3rem;
+}
+
+.page-padding {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.card-custom {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background-color: var(--color-white);
+    box-shadow: 0 12px 32px rgba(92, 82, 76, 0.08);
+}
+
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: var(--color-brown);
+    color: var(--color-white);
+    padding: 0.7rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: #9f5b34;
+    transform: translateY(-1px);
+}
+
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: var(--color-green);
+    color: var(--color-white);
+    padding: 0.7rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-secondary-custom:hover {
+    background-color: #3f604f;
+    transform: translateY(-1px);
+}
+
+.btn-outline-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-green);
+    border-radius: 999px;
+    background-color: var(--color-white);
+    color: var(--color-green);
+    padding: 0.65rem 1.1rem;
+    font-size: 0.9rem;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.badge-eco {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 999px;
+    background-color: var(--color-green-light);
+    color: var(--color-green);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+}
+
+.badge-brown {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 999px;
+    background-color: var(--color-brown-light);
+    color: var(--color-brown);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+}
+
+.input-custom {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background-color: var(--color-white);
+    padding: 0.85rem 1rem;
+    color: var(--color-dark);
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-custom:focus {
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 4px rgba(76, 113, 96, 0.14);
+}
+
+.site-header-bg {
+    background-color: var(--color-cream);
+}
+
+.site-footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
+
+.text-balance-custom {
+    text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding-block: 5rem;
+    }
+
+    .page-padding {
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+    }
+}
