@@ -1,7 +1,9 @@
 export default function OrderSuccessPage() {
   return (
-    <>
-      <h1>Ordine creato con successo</h1>
-    </>
+    <section className="container-custom page-padding">
+      <h1 className="text-4xl tracking-[0.08em] uppercase">
+        Ordine confermato
+      </h1>
+    </section>
   );
 }
