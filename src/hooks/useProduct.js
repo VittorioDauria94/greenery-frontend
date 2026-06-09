@@ -79,11 +79,15 @@ export default function useProduct({
         }
       } catch (err) {
         if (!ignore) {
+          const isNotFound = slug && err.status === 404;
+
           setState({
             product: null,
             products: [],
             isLoading: false,
-            error: err.message || "Errore durante il caricamento dei prodotti.",
+            error: isNotFound
+              ? ""
+              : err.message || "Errore durante il caricamento dei prodotti.",
             hasLoaded: true,
           });
         }

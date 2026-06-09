@@ -1,7 +1,11 @@
 const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
-async function apiRequest(path, params = {}) {
+async function apiRequest(
+  path,
+  params = {},
+  errorMessage = "Impossibile recuperare i prodotti.",
+) {
   const url = new URL(`${API_BASE_URL}${path}`);
 
   Object.entries(params).forEach(([key, value]) => {
@@ -13,7 +17,9 @@ async function apiRequest(path, params = {}) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw new Error("Impossibile recuperare i prodotti.");
+    const error = new Error(errorMessage);
+    error.status = response.status;
+    throw error;
   }
 
   return response.json();
@@ -40,7 +46,15 @@ function unwrapList(payload, key) {
 }
 
 function unwrapItem(payload, key) {
-  return payload?.[key] || payload?.data || payload;
+  if (payload && Object.prototype.hasOwnProperty.call(payload, key)) {
+    return payload[key];
+  }
+
+  if (payload && Object.prototype.hasOwnProperty.call(payload, "data")) {
+    return payload.data;
+  }
+
+  return payload;
 }
 
 export async function getProducts(filters = {}) {
@@ -53,6 +67,10 @@ export async function getFeaturedProducts() {
 }
 
 export async function getProductBySlug(slug) {
-  const payload = await apiRequest(`/products/${slug}`);
+  const payload = await apiRequest(
+    `/products/${encodeURIComponent(slug)}`,
+    {},
+    "Impossibile recuperare il prodotto.",
+  );
   return unwrapItem(payload, "product");
 }
