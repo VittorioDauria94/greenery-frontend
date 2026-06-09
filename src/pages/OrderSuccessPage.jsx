@@ -1,20 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 
-function formatCurrency(value) {
-  if (value === undefined || value === null || value === "") {
-    return "";
-  }
-
-  return Number(value).toLocaleString("it-IT", {
-    style: "currency",
-    currency: "EUR",
-  });
-}
+import { formatCurrency } from "../utils/formatPrice";
 
 export default function OrderSuccessPage() {
   const { state } = useLocation();
   const orderId = state?.order_id;
-  const totalPrice = formatCurrency(state?.total_price);
+  const totalPrice = formatCurrency(state?.total_price, { emptyValue: "" });
 
   return (
     <section className="container-custom page-padding">

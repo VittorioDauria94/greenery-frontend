@@ -1,51 +1,10 @@
 import { Link } from "react-router-dom";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000/api";
-
-function getApiOrigin() {
-  try {
-    return new URL(API_BASE_URL).origin;
-  } catch {
-    return "";
-  }
-}
-
-function getImageSrc(product) {
-  const image =
-    product.image_url ||
-    product.imageUrl ||
-    product.image ||
-    product.thumbnail ||
-    product.cover_image ||
-    product.images?.[0]?.url ||
-    product.images?.[0];
-
-  if (!image) {
-    return "";
-  }
-
-  if (typeof image !== "string") {
-    return "";
-  }
-
-  if (image.startsWith("http") || image.startsWith("data:")) {
-    return image;
-  }
-
-  if (image.startsWith("/")) {
-    return `${getApiOrigin()}${image}`;
-  }
-
-  return `${getApiOrigin()}/${image}`;
-}
+import { formatCurrency, getProductPrice } from "../utils/formatPrice";
+import { getProductImageUrl } from "../utils/imageUrl";
 
 function getPrice(product) {
-  const price =
-    product.price ??
-    product.min_price ??
-    product.starting_price ??
-    product.startingPrice;
+  const price = getProductPrice(product);
 
   if (price === undefined || price === null || price === "") {
     return "Prezzo non disponibile";
@@ -57,10 +16,7 @@ function getPrice(product) {
     return price;
   }
 
-  return `A partire da ${numericPrice.toLocaleString("it-IT", {
-    style: "currency",
-    currency: "EUR",
-  })}`;
+  return `A partire da ${formatCurrency(numericPrice)}`;
 }
 
 function getName(value) {
@@ -76,7 +32,7 @@ function getName(value) {
 }
 
 export default function ProductCard({ product }) {
-  const imageSrc = getImageSrc(product);
+  const imageSrc = getProductImageUrl(product);
   const name = product.name || product.title || "Prodotto Greenery";
   const slug = product.slug || product.id;
   const categoryName =

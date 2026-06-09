@@ -1,32 +1,8 @@
 import { Link } from "react-router-dom";
 
 import { useCart } from "../context/CartContext";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
-const BACKEND_URL = API_URL.replace("/api", "");
-
-function getImageSrc(image) {
-  if (!image || typeof image !== "string") {
-    return "";
-  }
-
-  if (image.startsWith("http") || image.startsWith("data:")) {
-    return image;
-  }
-
-  if (image.startsWith("/")) {
-    return `${BACKEND_URL}${image}`;
-  }
-
-  return `${BACKEND_URL}/${image}`;
-}
-
-function formatCurrency(value) {
-  return Number(value || 0).toLocaleString("it-IT", {
-    style: "currency",
-    currency: "EUR",
-  });
-}
+import { formatCurrency } from "../utils/formatPrice";
+import { getImageUrl } from "../utils/imageUrl";
 
 function getStockLimit(stock) {
   if (stock === undefined || stock === null || stock === "") {
@@ -88,7 +64,7 @@ export default function CartPage() {
       <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="space-y-4">
           {cartItems.map((item) => {
-            const imageSrc = getImageSrc(item.image);
+            const imageSrc = getImageUrl(item.image);
             const productPath = item.slug ? `/products/${item.slug}` : "/products";
             const stockLimit = getStockLimit(item.stock);
             const canIncrease =
