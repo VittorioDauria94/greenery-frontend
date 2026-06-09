@@ -248,7 +248,7 @@ export default function ProductDetailPage() {
             Prodotto non trovato
           </h1>
           <p className="mt-3 text-sm text-[var(--color-dark)]/75">
-            Il prodotto richiesto non esiste o non e piu disponibile.
+            Il prodotto richiesto non esiste o non è più disponibile.
           </p>
         </div>
       </section>
@@ -322,11 +322,15 @@ export default function ProductDetailPage() {
             {imageSrc ? (
               <img
                 src={imageSrc}
-                alt={name}
+                alt={`Immagine di ${name}`}
                 className="max-h-[20rem] w-full object-contain md:max-h-[30rem]"
               />
             ) : (
-              <div className="flex h-48 w-48 items-center justify-center rounded-full border border-dashed border-[var(--color-green)]/40 text-sm tracking-[0.14em] text-[var(--color-green)] uppercase">
+              <div
+                className="flex h-48 w-48 items-center justify-center rounded-full border border-dashed border-[var(--color-green)]/40 text-sm tracking-[0.14em] text-[var(--color-green)] uppercase"
+                role="img"
+                aria-label={`Immagine non disponibile per ${name}`}
+              >
                 Greenery
               </div>
             )}
@@ -365,7 +369,7 @@ export default function ProductDetailPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-xs tracking-[0.1em] text-[var(--color-green)] uppercase">
-                    Quantita
+                    Quantità
                   </p>
                   {remainingStock !== null && !isOutOfStock && (
                     <p className="mt-1 text-sm text-[var(--color-dark)]/70">
@@ -377,10 +381,10 @@ export default function ProductDetailPage() {
                 <div className="inline-flex w-fit items-center overflow-hidden rounded-full border border-[var(--color-border)] bg-[var(--color-white)]">
                   <button
                     type="button"
-                    className="px-4 py-2 text-lg text-[var(--color-green)] disabled:text-[var(--color-dark)]/30"
+                    className="px-4 py-2 text-lg text-[var(--color-green)] disabled:cursor-not-allowed disabled:text-[var(--color-dark)]/30"
                     onClick={handleDecreaseQuantity}
                     disabled={!canDecreaseQuantity}
-                    aria-label="Diminuisci quantita"
+                    aria-label="Diminuisci quantità"
                   >
                     -
                   </button>
@@ -389,10 +393,10 @@ export default function ProductDetailPage() {
                   </span>
                   <button
                     type="button"
-                    className="px-4 py-2 text-lg text-[var(--color-green)] disabled:text-[var(--color-dark)]/30"
+                    className="px-4 py-2 text-lg text-[var(--color-green)] disabled:cursor-not-allowed disabled:text-[var(--color-dark)]/30"
                     onClick={handleIncreaseQuantity}
                     disabled={!canIncreaseQuantity}
-                    aria-label="Aumenta quantita"
+                    aria-label="Aumenta quantità"
                   >
                     +
                   </button>
@@ -401,14 +405,14 @@ export default function ProductDetailPage() {
 
               <button
                 type="button"
-                className="btn-primary-custom mt-4 w-full disabled:opacity-60"
+                className="btn-primary-custom mt-4 w-full disabled:cursor-not-allowed disabled:opacity-60"
                 onClick={handleAddToCart}
                 disabled={!canAddToCart}
               >
                 {isOutOfStock
                   ? "Non disponibile"
                   : hasReachedStock
-                    ? "Stock gia nel carrello"
+                    ? "Stock già nel carrello"
                     : "Aggiungi al carrello"}
               </button>
 
@@ -448,7 +452,7 @@ export default function ProductDetailPage() {
           {sustainabilityNote && (
             <div className="rounded-3xl bg-[var(--color-green-light)] px-5 py-4">
               <p className="text-xs tracking-[0.12em] text-[var(--color-green)] uppercase">
-                Sostenibilita del partner
+                Sostenibilità del partner
               </p>
               <p className="mt-2 text-sm leading-6 text-[var(--color-dark)]/80">
                 {sustainabilityNote}

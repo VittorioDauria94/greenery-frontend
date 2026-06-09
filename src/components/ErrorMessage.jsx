@@ -3,8 +3,11 @@ export default function ErrorMessage({
   message = "Riprova tra qualche minuto.",
 }) {
   return (
-    <div className="rounded-3xl border border-[var(--color-brown)]/30 bg-[var(--color-brown)]/10 px-5 py-4 text-center text-[var(--color-dark)]">
-      <h2 className="text-base tracking-[0.08em] uppercase">{title}</h2>
+    <div
+      className="mx-auto max-w-xl rounded-3xl border border-[var(--color-brown)]/30 bg-[var(--color-brown)]/10 px-5 py-5 text-center text-[var(--color-dark)]"
+      role="alert"
+    >
+      <h2 className="text-base text-[var(--color-brown)]">{title}</h2>
       <p className="mt-2 text-sm text-[var(--color-dark)]/75">{message}</p>
     </div>
   );

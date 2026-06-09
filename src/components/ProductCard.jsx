@@ -25,6 +25,10 @@ function getImageSrc(product) {
     return "";
   }
 
+  if (typeof image !== "string") {
+    return "";
+  }
+
   if (image.startsWith("http") || image.startsWith("data:")) {
     return image;
   }
@@ -83,12 +87,26 @@ export default function ProductCard({ product }) {
 
   return (
     <article className="product-card">
-      <Link to={`/products/${slug}`} className="block">
+      <Link
+        to={`/products/${slug}`}
+        className="block"
+        aria-label={`Vai al prodotto ${name}`}
+      >
         <div className="product-card-image-wrap">
           {imageSrc ? (
-            <img src={imageSrc} alt={name} className="product-card-image" />
+            <img
+              src={imageSrc}
+              alt={`Immagine di ${name}`}
+              className="product-card-image"
+            />
           ) : (
-            <div className="product-card-placeholder">Greenery</div>
+            <div
+              className="product-card-placeholder"
+              role="img"
+              aria-label={`Immagine non disponibile per ${name}`}
+            >
+              Greenery
+            </div>
           )}
         </div>
 

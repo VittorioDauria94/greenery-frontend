@@ -7,7 +7,7 @@ const whatGreeneryDoes = [
 ];
 
 const whyItMatters = [
-  "Scelte sostenibili piu semplici",
+  "Scelte sostenibili più semplici",
   "Riduzione della plastica",
   "Consumo responsabile",
   "Maggiore attenzione al greenwashing",
@@ -21,7 +21,7 @@ export default function AboutPage() {
           Chi siamo
         </p>
         <h1 className="mt-2 text-3xl leading-tight text-[var(--color-dark)] md:text-4xl">
-          Greenery rende piu accessibili le scelte sostenibili.
+          Greenery rende più accessibili le scelte sostenibili.
         </h1>
         <p className="mt-4 text-base leading-7 text-[var(--color-dark)]/75">
           Un progetto frontend pensato per cercare, confrontare e acquistare

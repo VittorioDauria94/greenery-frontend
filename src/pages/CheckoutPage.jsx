@@ -144,7 +144,7 @@ export default function CheckoutPage() {
             Checkout non disponibile
           </h1>
           <p className="mt-3 text-sm text-[var(--color-dark)]/75">
-            Il carrello e vuoto. Aggiungi almeno un prodotto prima di
+            Il carrello è vuoto. Aggiungi almeno un prodotto prima di
             procedere.
           </p>
           <Link to="/products" className="btn-secondary-custom mt-5">
@@ -290,7 +290,7 @@ export default function CheckoutPage() {
                       {item.name}
                     </p>
                     <p className="mt-1 text-xs text-[var(--color-dark)]/65">
-                      Quantita: {item.quantity}
+                      Quantità: {item.quantity}
                     </p>
                   </div>
                   <p className="shrink-0 text-sm text-[var(--color-dark)]">

@@ -49,11 +49,14 @@ export default function ProductsPage() {
 
         {!isLoading && !error && products.length === 0 && (
           <div className="mx-auto max-w-md rounded-3xl bg-[var(--color-cream)] px-5 py-8 text-center">
-            <h2 className="text-lg text-[var(--color-dark)]">
+            <p className="text-sm tracking-[0.12em] text-[var(--color-green)] uppercase">
+              Catalogo
+            </p>
+            <h2 className="mt-2 text-lg text-[var(--color-dark)]">
               Nessun prodotto trovato
             </h2>
             <p className="mt-2 text-sm text-[var(--color-dark)]/75">
-              Prova con un'altra ricerca o scegli una categoria diversa.
+              Modifica la ricerca o scegli una categoria diversa.
             </p>
           </div>
         )}

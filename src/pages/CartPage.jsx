@@ -61,7 +61,7 @@ export default function CartPage() {
             Greenery
           </p>
           <h1 className="mt-2 text-2xl text-[var(--color-dark)]">
-            Il carrello e vuoto
+            Il carrello è vuoto
           </h1>
           <p className="mt-3 text-sm text-[var(--color-dark)]/75">
             Scopri il catalogo e aggiungi i tuoi prodotti sostenibili.
@@ -104,11 +104,15 @@ export default function CartPage() {
                     {imageSrc ? (
                       <img
                         src={imageSrc}
-                        alt={item.name}
+                        alt={`Immagine di ${item.name}`}
                         className="h-28 w-full object-contain"
                       />
                     ) : (
-                      <span className="flex h-24 w-24 items-center justify-center rounded-full border border-dashed border-[var(--color-green)]/40 text-xs tracking-[0.12em] text-[var(--color-green)] uppercase">
+                      <span
+                        className="flex h-24 w-24 items-center justify-center rounded-full border border-dashed border-[var(--color-green)]/40 text-xs tracking-[0.12em] text-[var(--color-green)] uppercase"
+                        role="img"
+                        aria-label={`Immagine non disponibile per ${item.name}`}
+                      >
                         Greenery
                       </span>
                     )}
@@ -139,10 +143,10 @@ export default function CartPage() {
                       <div className="inline-flex w-fit items-center overflow-hidden rounded-full border border-[var(--color-border)] bg-[var(--color-white)]">
                         <button
                           type="button"
-                          className="px-4 py-2 text-lg text-[var(--color-green)] disabled:text-[var(--color-dark)]/30"
+                          className="px-4 py-2 text-lg text-[var(--color-green)] disabled:cursor-not-allowed disabled:text-[var(--color-dark)]/30"
                           onClick={() => decreaseQuantity(item.id)}
                           disabled={item.quantity <= 1}
-                          aria-label="Diminuisci quantita"
+                          aria-label="Diminuisci quantità"
                         >
                           -
                         </button>
@@ -151,10 +155,10 @@ export default function CartPage() {
                         </span>
                         <button
                           type="button"
-                          className="px-4 py-2 text-lg text-[var(--color-green)] disabled:text-[var(--color-dark)]/30"
+                          className="px-4 py-2 text-lg text-[var(--color-green)] disabled:cursor-not-allowed disabled:text-[var(--color-dark)]/30"
                           onClick={() => increaseQuantity(item.id)}
                           disabled={!canIncrease}
-                          aria-label="Aumenta quantita"
+                          aria-label="Aumenta quantità"
                         >
                           +
                         </button>

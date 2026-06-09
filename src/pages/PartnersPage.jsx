@@ -30,6 +30,10 @@ function getProductsCount(partner) {
   );
 }
 
+function formatProductsCount(count) {
+  return Number(count) === 1 ? "1 prodotto" : `${count} prodotti`;
+}
+
 function PartnerCard({ partner }) {
   const name = partner.name || partner.title || "Partner Greenery";
   const description =
@@ -47,9 +51,7 @@ function PartnerCard({ partner }) {
       <div className="flex flex-wrap items-center gap-2">
         <span className="badge-eco">{getVerificationLabel(partner)}</span>
         {productsCount !== undefined && productsCount !== null && (
-          <span className="badge-brown">
-            {productsCount} prodotti
-          </span>
+          <span className="badge-brown">{formatProductsCount(productsCount)}</span>
         )}
       </div>
 
@@ -62,7 +64,7 @@ function PartnerCard({ partner }) {
       {sustainabilityNote && (
         <div className="mt-5 rounded-3xl bg-[var(--color-cream)]/55 px-4 py-3">
           <p className="text-xs tracking-[0.1em] text-[var(--color-green)] uppercase">
-            Sostenibilita
+            Sostenibilità
           </p>
           <p className="mt-2 text-sm leading-6 text-[var(--color-dark)]/75">
             {sustainabilityNote}
@@ -118,7 +120,7 @@ export default function PartnersPage() {
           Partner selezionati
         </h1>
         <p className="mt-3 text-sm leading-6 text-[var(--color-dark)]/75">
-          Collaboriamo con realta attente a materiali, filiere e pratiche piu
+          Collaboriamo con realtà attente a materiali, filiere e pratiche più
           responsabili.
         </p>
       </div>
@@ -136,7 +138,7 @@ export default function PartnersPage() {
               Nessun partner trovato
             </h2>
             <p className="mt-2 text-sm text-[var(--color-dark)]/75">
-              I partner saranno disponibili appena il catalogo verra aggiornato.
+              I partner saranno disponibili appena il catalogo verrà aggiornato.
             </p>
           </div>
         )}
