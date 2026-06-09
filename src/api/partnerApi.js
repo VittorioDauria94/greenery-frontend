@@ -32,7 +32,15 @@ function unwrapList(payload, key) {
 }
 
 function unwrapItem(payload, key) {
-  return payload?.[key] || payload?.data || payload;
+  if (payload && Object.prototype.hasOwnProperty.call(payload, key)) {
+    return payload[key];
+  }
+
+  if (payload && Object.prototype.hasOwnProperty.call(payload, "data")) {
+    return payload.data;
+  }
+
+  return payload;
 }
 
 export async function getPartners() {
@@ -41,6 +49,10 @@ export async function getPartners() {
 }
 
 export async function getPartnerBySlug(slug) {
-  const payload = await apiRequest(`/partners/${slug}`);
+  const payload = await apiRequest(`/partners/${encodeURIComponent(slug)}`);
   return unwrapItem(payload, "partner");
+}
+
+export async function getPartner(slug) {
+  return getPartnerBySlug(slug);
 }
